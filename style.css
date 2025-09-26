@@ -1,0 +1,389 @@
+/* ==========================================================================
+   1. FONTES E VARIÁVEIS GLOBAIS
+   ========================================================================== */
+
+/* Importando uma fonte moderna do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Definindo variáveis de cores para fácil customização */
+:root {
+    --primary-color: #FF6B00; /* Laranja vibrante para CTAs e destaques */
+    --dark-color: #1a1a1a;    /* Preto/Cinza escuro para texto */
+    --secondary-dark: #333;
+    --light-color: #ffffff;   /* Branco */
+    --grey-background: #f9f9f9; /* Fundo cinza claro para seções */
+    --header-height: 70px;
+}
+
+/* ==========================================================================
+   2. ESTILOS DE BASE E RESET
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-color);
+    color: var(--secondary-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+section {
+    padding: 80px 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   3. COMPONENTES REUTILIZÁVEIS (BOTÕES)
+   ========================================================================== */
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e65c00;
+    transform: translateY(-2px);
+}
+
+.cta-button-main {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button-main:hover {
+    background-color: #e65c00;
+    transform: translateY(-3px);
+}
+
+
+/* ==========================================================================
+   4. ESTILOS DAS SEÇÕES
+   ========================================================================== */
+
+/* ----- HEADER ----- */
+.header {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+    height: var(--header-height);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-menu a {
+    color: var(--secondary-dark);
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* ----- HERO SECTION ----- */
+#hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-color);
+    padding-top: var(--header-height); /* Evita que o conteúdo fique atrás do header */
+}
+
+#hero h1 {
+    font-size: 4rem;
+    color: var(--light-color);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#hero .subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+/* ----- EVENTOS (SLIDER) ----- */
+.slider-container {
+    /* Este layout seria controlado por JS, mas aqui está um exemplo básico com flexbox */
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permite scroll horizontal */
+    padding: 20px 0;
+    scrollbar-width: none; /* Esconde scrollbar no Firefox */
+}
+.slider-container::-webkit-scrollbar {
+    display: none; /* Esconde scrollbar no Chrome/Safari */
+}
+
+.slide {
+    flex: 0 0 300px; /* Não cresce, não encolhe, base de 300px */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slide .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--light-color);
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* ----- SERVIÇOS ----- */
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.servico-item {
+    background-color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servico-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.servico-item .icon {
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+.servico-item h3 {
+    margin-bottom: 15px;
+}
+
+/* ----- DIFERENCIAIS ----- */
+#diferenciais {
+    background-color: var(--grey-background);
+}
+
+.diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.diferencial-item {
+    padding: 20px;
+}
+
+.diferencial-item h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+/* ----- CTA FINAL ----- */
+#cta-final {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+}
+
+#cta-final h2 {
+    color: var(--light-color);
+}
+
+#cta-final p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+/* ----- FOOTER ----- */
+footer {
+    background-color: var(--dark-color);
+    color: #ccc;
+    padding: 60px 0 20px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--light-color);
+    margin-bottom: 15px;
+}
+
+.footer-col .logo {
+    color: var(--light-color);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons img {
+    width: 24px;
+    filter: grayscale(1) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover img {
+    opacity: 1;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+
+/* ==========================================================================
+   5. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+    
+    /* Para telas menores, o menu de navegação some.
+       Aqui você implementaria um botão "hamburger" com JavaScript */
+    .nav-menu {
+        display: none; 
+    }
+
+    .cta-button {
+        display: none; /* Esconde o botão do header, mantendo o da Hero Section */
+    }
+
+    .header .container {
+        justify-content: center;
+    }
+    
+    .logo {
+        text-align: center;
+    }
+}
